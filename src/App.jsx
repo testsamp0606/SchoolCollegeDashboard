@@ -1,10 +1,19 @@
+import { useState } from 'react'
+import './App.css'
+import Sidebar from './components/Sidebar'
+import Header from './components/Header'
+import Dashboard from './pages/Dashboard'
+
 export default function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
   return (
-    <div style={{ padding: '40px', textAlign: 'center', fontFamily: 'sans-serif' }}>
-      <h1>Welcome to NiceAdmin React</h1>
-      <p>Your project has been converted to React with Vite!</p>
-      <p>Assets are available in <code>/assets</code></p>
-      <p>Start editing <code>src/App.jsx</code> to customize your app.</p>
+    <div className="app">
+      <Sidebar isOpen={sidebarOpen} />
+      <div className="main-content">
+        <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+        <Dashboard />
+      </div>
     </div>
   )
 }
